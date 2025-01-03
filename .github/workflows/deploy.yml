@@ -52,3 +52,21 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push emidio78/nexon-webapp
+      # Step 8: Set up SSH key
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Step 9: Run commands on the remote server via SSH
+      - name: Run Docker commands on the remote VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no deployuser@${{ secrets.SERVER_IP }} << 'EOF'
+            # Pull the latest Docker image
+            sudo docker pull emidio78/nexon-webapp
+
+            # Restart Docker Compose
+            cd /opt/nexon
+            sudo docker-compose down
+            sudo docker-compose up -d
+          EOF
