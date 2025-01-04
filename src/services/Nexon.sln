@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bff.API", "Bff.API\Bff.API.csproj", "{2E90514C-9665-4C20-AC40-E1AF9A94B855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexon.AppHost", "Nexon.AppHost\Nexon.AppHost.csproj", "{71655F29-5CA2-4F35-8CBC-660EA4E80D88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexon.ServiceDefaults", "Nexon.ServiceDefaults\Nexon.ServiceDefaults.csproj", "{836637D0-2C70-487D-9BC0-0DFB9FFF4431}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E90514C-9665-4C20-AC40-E1AF9A94B855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E90514C-9665-4C20-AC40-E1AF9A94B855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E90514C-9665-4C20-AC40-E1AF9A94B855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E90514C-9665-4C20-AC40-E1AF9A94B855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71655F29-5CA2-4F35-8CBC-660EA4E80D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71655F29-5CA2-4F35-8CBC-660EA4E80D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71655F29-5CA2-4F35-8CBC-660EA4E80D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71655F29-5CA2-4F35-8CBC-660EA4E80D88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{836637D0-2C70-487D-9BC0-0DFB9FFF4431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{836637D0-2C70-487D-9BC0-0DFB9FFF4431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{836637D0-2C70-487D-9BC0-0DFB9FFF4431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{836637D0-2C70-487D-9BC0-0DFB9FFF4431}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
