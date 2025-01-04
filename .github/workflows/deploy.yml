@@ -17,20 +17,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Setup Node.js for running Angular tests
+      # Step 2: Setup Node.js for Angular
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
 
-      # Step 3: Install Angular CLI and dependencies
+      # Step 3: Install Angular CLI and Dependencies
       - name: Install Angular CLI and Dependencies
         working-directory: src/webapp/nexon
         run: |
           npm install -g @angular/cli
           npm install
 
-      # Step 4: Run tests in headless mode
+      # Step 4: Run Angular tests in headless mode
       - name: Run Tests in Headless Mode
         working-directory: src/webapp/nexon
         run: |
@@ -43,27 +43,54 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Step 6: Build Docker image
-      - name: Build Docker Image
+      # Step 6: Build Angular Docker image
+      - name: Build Angular Docker Image
         run: |
           docker build -t emidio78/nexon-webapp src/webapp/nexon
 
-      # Step 7: Push Docker image to Docker Hub
-      - name: Push Docker Image
+      # Step 7: Push Angular Docker image to Docker Hub
+      - name: Push Angular Docker Image
         run: |
           docker push emidio78/nexon-webapp
-      # Step 8: Set up SSH key
+
+      # Step 8: Setup .NET Core
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.x' # Cambia per .NET 9
+
+      # Step 9: Build and test .NET project
+      - name: Build and Test .NET Project
+        working-directory: src/services/Bff.Api
+        run: |
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet test --no-build --verbosity normal
+
+      # Step 10: Build .NET Docker image
+      - name: Build .NET Docker Image
+        working-directory: src/services
+        run: |
+          docker build -t emidio78/nexon-api -f Bff.Api/Dockerfile .
+
+      # Step 11: Push .NET Docker image to Docker Hub
+      - name: Push .NET Docker Image
+        run: |
+          docker push emidio78/nexon-api
+
+      # Step 12: Set up SSH key
       - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # Step 9: Run commands on the remote server via SSH
+      # Step 13: Run Docker commands on the remote VPS
       - name: Run Docker commands on the remote VPS
         run: |
           ssh -o StrictHostKeyChecking=no deployuser@${{ secrets.SERVER_IP }} << 'EOF'
-            # Pull the latest Docker image
+            # Pull the latest Docker images
             sudo docker pull emidio78/nexon-webapp
+            sudo docker pull emidio78/nexon-api
 
             # Restart Docker Compose
             cd /opt/nexon
