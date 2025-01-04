@@ -8,3 +8,9 @@ services:
     restart: always  # Riavvia il servizio in caso di errore
     environment:
       - NODE_ENV=production  # Puoi aggiungere variabili d'ambiente se necessarie
+  nexon-api:
+    image: emidio78/nexon-api
+    ports:
+      - "8081:80"  # Mappa la porta 80 del container alla porta 8081 dell'host
+    restart: always  # Riavvia il servizio in caso di errore
+
