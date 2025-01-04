@@ -61,7 +61,7 @@ jobs:
 
       # Step 9: Build and test .NET project
       - name: Build and Test .NET Project
-        working-directory: src/services/Bff.Api
+        working-directory: src/services/Bff.API
         run: |
           dotnet restore
           dotnet build --configuration Release
@@ -71,7 +71,7 @@ jobs:
       - name: Build .NET Docker Image
         working-directory: src/services
         run: |
-          docker build -t emidio78/nexon-api -f Bff.Api/Dockerfile .
+          docker build -t emidio78/nexon-api -f Bff.API/Dockerfile .
 
       # Step 11: Push .NET Docker image to Docker Hub
       - name: Push .NET Docker Image
