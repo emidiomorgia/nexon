@@ -11,6 +11,7 @@ var environment = builder.Environment.EnvironmentName;
 builder.Configuration.AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
 
 builder.Configuration.AddJsonFile("env.json", optional: true, reloadOnChange: true);
+builder.Configuration.AddEnvironmentVariables();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
